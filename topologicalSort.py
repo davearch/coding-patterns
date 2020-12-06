@@ -13,10 +13,12 @@
 from collections import deque, defaultdict
 from typing import List
 
+
 class Node:
     def __init__(self):
         self.indegrees = 0
         self.children = []
+
 
 def topologicalSort(vertices: int, edges: List[List[int]]) -> List[int]:
     output = []
