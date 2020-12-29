@@ -1,9 +1,18 @@
-# heaps are for quick extraction of 'priority' items, the biggest element in a max-heap, the smallest element in a min-heap
-# heaps are complete binary trees, usually implemented internally as an array
-# insert, extract is O(log(n)), n being the number of elements in the heap array
-# peek (non-removal) of priority item (max or min) is O(1)
-# todo: more comments
-# todo: more tests
+"""Heaps are for quick extraction of 'priority' items i.e., the biggest
+element in a max-heap or the smallest element in a min-heap.
+
+Heaps are complete binary trees, usually implemented internally as an
+array. The insert and extract methods run in O(log(n)) time, with n
+being the number of elements in the heap array. peek (non-removal) of a
+priority item (max or min) is O(1). The O(log(n)) runtime of extraction
+means that extracting n nodes would be the equivalent of a O(nlog(n))
+sort of the array.
+
+todo: more comments, more tests
+"""
+
+# david archuleta jr.
+
 from abc import ABC, abstractclassmethod
 
 
@@ -60,15 +69,13 @@ class Heap(ABC):
             levels.append(level)
         h = len(levels)
         for idx, level in enumerate(levels):
-            print(idx)
-            print(f'{" " * (h *(h - idx))}{level}', end="\n")
+            print(f'{idx}{" " * (h *(h - idx))}{level}', end="\n")
 
 
 class MinHeap(Heap):
     def extract(self):
         top = self.arr[0]
-        self.arr[0] = self.arr[-1]
-        self.arr.pop()
+        self.arr[0] = self.arr.pop()
         self._minHeapifyDown(0)
         return top
 
@@ -77,13 +84,22 @@ class MinHeap(Heap):
         self._minHeapifyUp(len(self.arr) - 1)
         return True
 
+    # the element at index invalidates the heap invariant.
+    # shift it upwards towards the root sifting down all other elements
+    # that are bigger.
     def _minHeapifyUp(self, index):
-        parent = self._parent(index)
+        newitem = self.arr[index]
+        root = 0  # for clarity
 
-        while self.arr[parent] > self.arr[index]:
-            self._swap(parent, index)
-            index = parent
-            parent = self._parent(parent)
+        while index > root:
+            parentindex = self._parent(index)
+            parent = self.arr[parentindex]
+            if newitem < parent:
+                self.arr[index] = parent
+                index = parentindex
+                continue
+            break
+        self.arr[index] = newitem
 
     def _minHeapifyDown(self, index):
         left = self._leftChild(index)
