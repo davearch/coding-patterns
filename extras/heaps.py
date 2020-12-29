@@ -2,6 +2,8 @@
 # heaps are complete binary trees, usually implemented internally as an array
 # insert, extract is O(log(n)), n being the number of elements in the heap array
 # peek (non-removal) of priority item (max or min) is O(1)
+# todo: more comments
+# todo: more tests
 from abc import ABC, abstractclassmethod
 
 
