@@ -207,11 +207,11 @@ class LinkedList:
             curr = curr.next
         if curr is None:
             return
-    
+
     def get_node_at_pos(self, pos):
         if pos == 0:
             return self.head
-        
+
         curr = self.head
         count = 0
         while curr:

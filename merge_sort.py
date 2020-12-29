@@ -63,20 +63,22 @@ class Solution:
             count += 1
         return None
 
+
 # utility function to print list
 def printList(head):
     if not head:
-        print(' ')
+        print(" ")
         return
     curr = head
     while curr:
         print(curr.data, end=" ")
         curr = curr.next
-    print(' ')
+    print(" ")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     llist = LinkedList()
-    
+
     llist.append(15)
     llist.append(10)
     llist.append(5)
