@@ -118,8 +118,7 @@ class MinHeap(Heap):
 class MaxHeap(Heap):
     def extract(self):
         top = self.arr[0]
-        self.arr[0] = self.arr[-1]
-        self.arr.pop()
+        self.arr[0] = self.arr.pop()
         self._maxHeapifyDown(0)
         return top
 
